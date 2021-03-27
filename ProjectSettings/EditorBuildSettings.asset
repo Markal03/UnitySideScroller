@@ -9,9 +9,15 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Menu.unity
+    path: Assets/Scenes/Menu/Menu.unity
     guid: 9f8c730402302274a96e5a0a0c47a98e
   - enabled: 1
-    path: Assets/Scenes/PrototypeScene.unity
+    path: Assets/Scenes/Limbo.unity
     guid: f14b864967fc39f4b95d30987b028199
+  - enabled: 1
+    path: Assets/Scenes/BloodRiver.unity
+    guid: 804a34c7aa7dc454699f572e17c9142c
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 91e5726377d7e424ca3f8f96dad1f3ac
   m_configObjects: {}
