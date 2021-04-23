@@ -48,7 +48,7 @@ public class Player_Health : MonoBehaviour
     {
         if (collision.collider.CompareTag("Hazard"))
         {
-            TakeDamage(20);
+            //TakeDamage(20);
         }
 
         if (collision.collider.CompareTag("Death"))
@@ -70,8 +70,20 @@ public class Player_Health : MonoBehaviour
             {
                 hasDied = true;
                 isImmune = true;
+                gameObject.GetComponent<Player_Move>().canMove = false;
                 animator.SetTrigger("Death");
             }
         }
+    }
+
+    public void Heal(int healAmount)
+    {
+        if (currentHealth + healAmount > maxHealth)
+            currentHealth = maxHealth;
+
+        else
+            currentHealth += healAmount;
+
+        healthBar.SetHealth(currentHealth);
     }
 }

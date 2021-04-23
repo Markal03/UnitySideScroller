@@ -19,7 +19,7 @@ public class CameraSystem : MonoBehaviour
     private void LateUpdate()
     {
         float x = Mathf.Clamp(player.transform.position.x, xMin, xMax);
-        float y = Mathf.Clamp(player.transform.position.y, yMin, yMax);
+        float y = Mathf.Clamp(player.transform.position.y - 1, yMin, yMax);
         gameObject.transform.position = new Vector3(x, y, gameObject.transform.position.z);
     }
 }

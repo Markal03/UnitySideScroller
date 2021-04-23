@@ -42,7 +42,7 @@ public class Player_Move : MonoBehaviour
     private bool groundTouch;
     private bool hasDashed;
 
-    public int side = 1;
+    public int side = -1;
 
 
 
@@ -97,8 +97,8 @@ public class Player_Move : MonoBehaviour
         }
         if (collision.onWall && Input.GetButton("Fire3") && canMove)
         {
-            //if (side != collision.wallSide)
-                //anim.Flip(side * -1);
+           if (side == collision.wallSide)
+                Flip();
             wallGrab = true;
             wallSlide = false;
         }
@@ -305,9 +305,11 @@ public class Player_Move : MonoBehaviour
     void Flip()
     {
         facingRight = !facingRight;
+        
         anim.SetFloat("HorizontalFacing", facingRight ? 0 : 1);
         Vector2 colliderPosition = attackPoint.transform.localPosition;
         colliderPosition.x *= -1;
+        side *= -1;
         attackPoint.transform.localPosition = colliderPosition;
     }
 
@@ -361,12 +363,12 @@ public class Player_Move : MonoBehaviour
 
     private void WallJump()
     {
-        //if ((side == 1 && collision.onRightWall) || side == -1 && !collision.onRightWall)
-        //{
-        //    side *= -1;
-        //    anim.Flip(side);
-        //}
-        Flip();
+        if ((side == -1 && collision.onRightWall) || side == 1 && !collision.onRightWall)
+        {
+            //side *= -1;
+            Flip();
+        }
+        //Flip();
 
         StopCoroutine(DisableMovement(0));
         StartCoroutine(DisableMovement(.1f));
@@ -380,8 +382,8 @@ public class Player_Move : MonoBehaviour
 
     private void WallSlide()
     {
-        if (collision.wallSide != side)
-            //Flip();
+        if (collision.wallSide == side)
+            Flip();
 
         if (!canMove)
             return;
